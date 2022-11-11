@@ -20,8 +20,7 @@ and add the following snippet wherever you tend to add snippets:
   :config
   (require 'dap-python)
   (setq dap-python-debugger 'debugpy)
-  (defun dap-python--pyenv-executable-find (command)
-    (with-venv (executable-find "python")))
+  (with-venv-advice-add 'dap-python--pyenv-executable-find)
 
   (add-hook 'dap-stopped-hook
             (lambda (arg) (call-interactively #'dap-hydra))))
